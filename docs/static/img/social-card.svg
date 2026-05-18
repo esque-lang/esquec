@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <rect width="1200" height="675" fill="#0E0E12"/>
+
+  <g fill="none" stroke="#5B5BFF" stroke-width="6" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M150 90 L80 90 L80 585 L150 585"/>
+    <path d="M1050 90 L1120 90 L1120 585 L1050 585"/>
+  </g>
+
+  <g font-family="Overpass, 'Helvetica Neue', Arial, sans-serif" fill="#F5F5F7">
+    <text x="180" y="290" font-size="156" font-weight="700" letter-spacing="-4">esque</text>
+    <text x="184" y="350" font-size="28" font-weight="400" fill="#A8A8B4">
+      A statically typed, tensor-primitive systems language.
+    </text>
+  </g>
+
+  <g font-family="'Overpass Mono', 'JetBrains Mono', Menlo, Consolas, monospace" fill="#E0E0FF">
+    <text x="184" y="475" font-size="26">
+      <tspan fill="#8B8BFF">fn</tspan> dot[N](x: f32[N], y: f32[N]) <tspan fill="#8B8BFF">-&gt;</tspan> f32 = +/(x .* y)
+    </text>
+  </g>
+
+  <text x="184" y="555" font-family="'Overpass Mono', monospace" font-size="22" fill="#5B5BFF" letter-spacing="2">
+    esque-lang.github.io / esquec
+  </text>
+</svg>

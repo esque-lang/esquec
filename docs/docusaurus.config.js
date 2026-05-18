@@ -5,7 +5,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: 'esque',
   tagline: 'A statically typed, tensor-primitive systems language',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   future: {
     v4: true,
@@ -72,11 +72,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      image: 'img/social-card.png',
       colorMode: {
         respectPrefersColorScheme: true,
       },
       navbar: {
         title: 'esque',
+        logo: {
+          alt: 'esque',
+          src: 'img/logo.svg',
+        },
         items: [
           {
             type: 'doc',
