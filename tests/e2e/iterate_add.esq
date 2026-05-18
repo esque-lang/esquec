@@ -1,3 +1,4 @@
+# expect exit 50
 # Test iterate with addition lambda
 fn main() -> i32 = {
     # Iterate 10 times: add 5 each time

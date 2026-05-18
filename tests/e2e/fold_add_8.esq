@@ -1,3 +1,4 @@
+# expect exit 36
 # Sum-reduction over 8 f32 elements: exercises the AVX2 horizontal-SIMD
 # reduction fast path (vextractf128 + addps + haddps + haddps).
 fn main() -> i32 = {

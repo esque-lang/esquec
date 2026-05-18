@@ -1,3 +1,5 @@
+# expect exit 0
+# expect stdout "hello, world\n"
 @io
 fn main() -> i32 = {
     print_str("hello, world\n");

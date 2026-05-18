@@ -1,3 +1,4 @@
+# expect exit 44
 # 300_i32 truncates to its low byte 0x2C = 44. Zero-extending u8 to
 # i32 is a no-op for non-negative-low-byte values, so the host sees
 # 44.

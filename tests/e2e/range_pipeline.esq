@@ -1,3 +1,4 @@
+# expect exit 10
 # (0..5) |> sum  - exercises range expression piped into a fn
 fn sum(v: i32[5]) -> i32 = +/v
 fn main() -> i32 = 0..5 |> sum

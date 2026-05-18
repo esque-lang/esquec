@@ -1,3 +1,4 @@
+# expect exit 136
 # Sum-reduction over 16 f32 elements: exercises (a) the strip-mined
 # AVX2 accumulator chain (two vmovups+vaddps chunks) followed by
 # horizontal reduce, and (b) the OpConstFloat-spill path in isel

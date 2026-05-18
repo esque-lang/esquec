@@ -1,3 +1,5 @@
+# expect exit 142
+# expect stdout "1.000000\n"
 # Regression: a tensor base pointer that lives in a scratch GPR must
 # survive across @io calls.
 #

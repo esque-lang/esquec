@@ -1,3 +1,4 @@
+# expect exit 66
 # Sum-reduction over 11 f32 elements: exercises the strip-mined SIMD
 # body for the 8-aligned prefix plus the 3-element scalar tail.
 fn main() -> i32 = {

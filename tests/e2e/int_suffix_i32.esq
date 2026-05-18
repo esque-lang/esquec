@@ -1,2 +1,3 @@
+# expect exit 99
 # Explicit _i32 type suffix on an integer literal.
 fn main() -> i32 = 99_i32

@@ -1,2 +1,4 @@
+# expect exit 42
+# expect stdout "42\n"
 @io
 fn main() -> i32 = print_i32(42)

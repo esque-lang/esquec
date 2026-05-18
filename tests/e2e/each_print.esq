@@ -1,3 +1,5 @@
+# expect exit 0
+# expect stdout "0\n1\n2\n3\n4\n"
 # each(0..5, print_i32) prints 0..4 and returns unit; we exit 0.
 @io
 fn main() -> i32 = {

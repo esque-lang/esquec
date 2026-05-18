@@ -1,3 +1,5 @@
+# expect exit 0
+# expect stdout "esque\n"
 @io
 fn main() -> i32 = {
     let s = "esque\n";

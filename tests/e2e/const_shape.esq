@@ -1,3 +1,4 @@
+# expect exit 33
 # Const-folded shape arithmetic (v0.11):
 #   range bound `(2+3)`        -> 5
 #   tabulate N `(2*16+1)`      -> 33

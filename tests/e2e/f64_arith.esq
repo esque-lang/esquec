@@ -1,3 +1,4 @@
+# expect exit 42
 # f64 scalar arithmetic and i32<->f64 casts (v0.12).
 #
 # Exercises: f64 constants, f64 add/sub/mul/div, i32->f64 (CVTSI2SD),

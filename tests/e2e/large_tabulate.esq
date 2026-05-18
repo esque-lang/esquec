@@ -1,3 +1,4 @@
+# expect exit 86
 # tabulate(100, |i| i) builds an i32[100] holding 0..99.
 # +/ over the literal sums to 4950; mod 256 = 86.
 fn main() -> i32 = +/(tabulate(100, |i| i)) % 256

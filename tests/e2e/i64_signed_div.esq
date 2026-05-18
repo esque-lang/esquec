@@ -1,3 +1,4 @@
+# expect exit 42
 # v0.11: i64 signed division pinning down the IDIV / CQO path.
 # -100_i64 / 7_i64 = -14 (round toward zero, signed semantics).
 # Adding 56 yields 42.

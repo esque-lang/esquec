@@ -1,3 +1,4 @@
+# expect exit 250
 # 200_u8 + 50_u8 = 250 fits in u8 without wrap. Cast widens by
 # zero-extending the low byte, so the i32 host sees 250.
 fn main() -> i32 = (200_u8 + 50_u8) as i32

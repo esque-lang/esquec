@@ -1,3 +1,4 @@
+# expect exit 7
 # v0.11: unsigned comparison. 3_000_000_000 looks negative under
 # signed-i32 interpretation, so "3_000_000_000 > 100" is true under
 # unsigned semantics (CCA/CCB) but false under signed (CCG/CCL).

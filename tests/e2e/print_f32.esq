@@ -1,3 +1,5 @@
+# expect exit 7
+# expect stdout "3.140000\n0.000000\n-2.500000\n"
 # Verifies the runtime print_f32 intrinsic. Prints three values
 # covering positive, zero/negative, and negative-fractional paths,
 # then returns 7 as the exit code so the harness can also confirm

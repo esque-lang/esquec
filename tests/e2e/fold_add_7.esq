@@ -1,3 +1,4 @@
+# expect exit 28
 # Sum-reduction over 7 f32 elements: exercises the SSE3 4-lane prefix
 # (Load128 + 2x HAddPS128) plus a 3-element scalar tail. Below the
 # AVX2/N>=8 strip-mined path; above pure scalar.

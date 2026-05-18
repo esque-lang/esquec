@@ -1,3 +1,4 @@
+# expect exit 42
 # Verifies unsigned comparison. 200_u8 > 100_u8 is true under
 # unsigned semantics. With u8 zero-extended into a 64-bit register,
 # the result is identical to i64 unsigned compare: 200 > 100.

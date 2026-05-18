@@ -1,3 +1,4 @@
+# expect exit 42
 # `let x = e in body` expression form (v0.12).
 #
 # Single-expression function body using nested let-in: a = 10,

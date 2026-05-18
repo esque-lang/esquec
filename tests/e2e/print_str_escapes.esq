@@ -1,3 +1,5 @@
+# expect exit 0
+# expect stdout "a\tb\nc\\d\n"
 @io
 fn main() -> i32 = {
     print_str("a\tb\n");

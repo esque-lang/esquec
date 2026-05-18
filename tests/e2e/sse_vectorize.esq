@@ -1,3 +1,4 @@
+# expect exit 14
 # SSE 4-element vectorization test
 fn main() -> i32 = {
     let a = [1.0, 2.0, 3.0, 4.0];

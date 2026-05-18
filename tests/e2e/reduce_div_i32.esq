@@ -1,3 +1,4 @@
+# expect exit 42
 # v0.14: left-fold divide reduction over an i32 tensor.
 # //[840, 2, 5, 2] = ((840 / 2) / 5) / 2 = 42.
 fn main() -> i32 = {

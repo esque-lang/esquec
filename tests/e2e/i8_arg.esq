@@ -1,3 +1,4 @@
+# expect exit 42
 # Verifies that a function with an i8 parameter sees the canonical
 # sign-extended representation at entry: System V passes 21 in the
 # low byte of RDI but doesn't promise the upper bits, so the

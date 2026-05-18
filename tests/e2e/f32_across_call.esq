@@ -1,3 +1,5 @@
+# expect exit 42
+# expect stdout "2.000000\n"
 # Regression: f32 SSA values must survive across @io calls.
 #
 # SIMD registers are caller-saved on System V AMD64. Before this fix,

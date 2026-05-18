@@ -1,3 +1,4 @@
+# expect exit 24
 # Test fold with mul operator
 fn main() -> i32 = {
     let arr = [1.0, 2.0, 3.0, 4.0];

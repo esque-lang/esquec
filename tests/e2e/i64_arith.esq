@@ -1,3 +1,4 @@
+# expect exit 71
 # v0.11: i64 arithmetic exercising values that don't fit in i32.
 # 1_000_000 * 1_000_000 = 10^12, mod 256 = 0 (lower bits of 10^12).
 # Adding 71 returns 71, which fits in the exit-code byte.

@@ -1,0 +1,5 @@
+# expect compile-error "@io"
+# A pure `main` calling an @io intrinsic must be rejected by the
+# effect checker, and the diagnostic must mention `@io` so the
+# fix-it ("annotate main as @io") is obvious.
+fn main() -> i32 = print_i32(1)

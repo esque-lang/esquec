@@ -1,3 +1,4 @@
+# expect exit 44
 # 300_i32 truncates to its low byte 0x2C = 44. Sign-extending a
 # non-negative low byte is a no-op, so widening back to i32 gives 44.
 fn main() -> i32 = ((300_i32 as i8) as i32)

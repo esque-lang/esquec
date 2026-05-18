@@ -1,3 +1,5 @@
+# expect exit 0
+# expect stdout "0\n1\n2\n"
 # v0.13: each can call any function whose effects fit the caller.
 # Here `shout` is a user-defined @io wrapper around print_i32, and
 # each(0..3, shout) produces 0\n1\n2\n on stdout.

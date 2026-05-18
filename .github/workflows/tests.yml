@@ -40,6 +40,22 @@ jobs:
             exit 1
           fi
 
+      # Every fixture under tests/e2e/ must declare at least one
+      # `# expect ...` directive so the auto-discovery harness in
+      # tests/e2e/e2e_test.go has something to assert against
+      # (see issue #2). Silent fixtures are how comments in the old
+      # Go-side test file drifted out of sync with reality.
+      - name: Require expect directives on every tests/e2e fixture
+        run: |
+          missing=0
+          for f in tests/e2e/*.esq; do
+            if ! grep -qE '^[[:space:]]*(#|//)[[:space:]]*expect[[:space:]]' "$f"; then
+              echo "::error file=$f::missing \`# expect\` directive (see issue #2)"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then exit 1; fi
+
       - run: go vet ./...
 
       - run: go build ./...
