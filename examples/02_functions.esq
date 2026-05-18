@@ -1,5 +1,5 @@
-// Example 02: Functions with parameters
-// Demonstrates: multi-arg functions, function calls, recursion-like composition
+# Example 02: Functions with parameters
+# Demonstrates: multi-arg functions, function calls, recursion-like composition
 
 fn add(a: i32, b: i32) -> i32 = a + b
 
@@ -13,5 +13,5 @@ fn sum_of_squares(a: i32, b: i32) -> i32 = {
     add(sq_a, sq_b)
 }
 
-// Main: compute 3² + 4² = 9 + 16 = 25 (Pythagorean triple!)
+# Main: compute 3² + 4² = 9 + 16 = 25 (Pythagorean triple!)
 fn main() -> i32 = sum_of_squares(3, 4)

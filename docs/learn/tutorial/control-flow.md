@@ -33,7 +33,7 @@ expression and produces its value:
 fn main() -> i32 = {
     let a = 10;
     let b = 3;
-    a + b              // last expression: this is the value of the block
+    a + b              # last expression: this is the value of the block
 }
 ```
 
@@ -48,8 +48,8 @@ the result of:
 
 ```esque
 fn main() -> i32 = {
-    each(0..5, print_i32);    // side effect, returns unit
-    0                          // exit code
+    each(0..5, print_i32);    # side effect, returns unit
+    0                          # exit code
 }
 ```
 

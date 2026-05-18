@@ -1,14 +1,14 @@
-// Regression: a tensor base pointer that lives in a scratch GPR must
-// survive across @io calls.
-//
-// Before this fix, the liveAcrossCall analysis dropped the very first
-// definition (Result.ID == 0) because every sink op (Store, Jump,
-// Label) shared that sentinel ID, so the rodata-pointer for `xs`
-// stayed in a caller-saved RCX, then the print clobbered it.
-//
-// Compute a = 1.0, print it, then `tabulate(4, |_i| a) .* xs` and
-// reduce. xs = [10,20,30,40] so the sum is 100; +42 makes 142 hit
-// the exit code byte.
+# Regression: a tensor base pointer that lives in a scratch GPR must
+# survive across @io calls.
+#
+# Before this fix, the liveAcrossCall analysis dropped the very first
+# definition (Result.ID == 0) because every sink op (Store, Jump,
+# Label) shared that sentinel ID, so the rodata-pointer for `xs`
+# stayed in a caller-saved RCX, then the print clobbered it.
+#
+# Compute a = 1.0, print it, then `tabulate(4, |_i| a) .* xs` and
+# reduce. xs = [10,20,30,40] so the sum is 100; +42 makes 142 hit
+# the exit code byte.
 
 @io fn main() -> i32 = {
     let xs = [10.0, 20.0, 30.0, 40.0];

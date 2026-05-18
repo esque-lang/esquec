@@ -1,5 +1,5 @@
-// Example 03: Conditionals and comparisons
-// Demonstrates: if/else, comparison operators
+# Example 03: Conditionals and comparisons
+# Demonstrates: if/else, comparison operators
 
 fn abs(x: i32) -> i32 = {
     if x < 0 { -x } else { x }
@@ -13,13 +13,13 @@ fn min(a: i32, b: i32) -> i32 = {
     if a < b { a } else { b }
 }
 
-// clamp(100, 0, 50) = min(max(100, 0), 50) = min(100, 50) = 50
+# clamp(100, 0, 50) = min(max(100, 0), 50) = min(100, 50) = 50
 fn clamp(x: i32, lo: i32, hi: i32) -> i32 = {
     min(max(x, lo), hi)
 }
 
 fn main() -> i32 = {
-    let a = abs(-8);         // 8
-    let b = clamp(100, 0, 50); // 50
-    a + b                    // 58
+    let a = abs(-8);         # 8
+    let b = clamp(100, 0, 50); # 50
+    a + b                    # 58
 }

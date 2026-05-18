@@ -1,5 +1,5 @@
-// Verifies signed comparison: -1_i8 must be observed as less than 0
-// under signed semantics. With the canonical sign-extended low-byte
-// representation, the existing 64-bit signed compare already does
-// the right thing.
+# Verifies signed comparison: -1_i8 must be observed as less than 0
+# under signed semantics. With the canonical sign-extended low-byte
+# representation, the existing 64-bit signed compare already does
+# the right thing.
 fn main() -> i32 = if (-1_i8) < 0_i8 { 42 } else { 0 }

@@ -5,9 +5,9 @@ title: Iterate until
 # Iterate until
 
 ```esque
-// iter.esq
-// iterate_until(init, step, pred, max)
-// Counts 0,1,2,..., predicate fires at 7; result frozen at 7.
+# iter.esq
+# iterate_until(init, step, pred, max)
+# Counts 0,1,2,..., predicate fires at 7; result frozen at 7.
 fn main() -> i32 = iterate_until(0, |s| s + 1, |s| s == 7, 10)
 ```
 
@@ -54,11 +54,11 @@ the latter will just be cheaper.
 ## A more realistic example: Newton's method
 
 ```esque
-// sqrt2.esq
+# sqrt2.esq
 fn main() -> i32 = {
-    // Approximate sqrt(2) starting from x0 = 2.
-    // Newton step: x' = (x + 2/x) / 2
-    // Stop when x*x is within 0.01 of 2.0.
+    # Approximate sqrt(2) starting from x0 = 2.
+    # Newton step: x' = (x + 2/x) / 2
+    # Stop when x*x is within 0.01 of 2.0.
     let s = iterate_until(
         2.0,
         |x| (x + 2.0 / x) / 2.0,
@@ -68,7 +68,7 @@ fn main() -> i32 = {
         },
         6
     );
-    s as i32          // 1 (since sqrt(2) ≈ 1.414...)
+    s as i32          # 1 (since sqrt(2) ≈ 1.414...)
 }
 ```
 

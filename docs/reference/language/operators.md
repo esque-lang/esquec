@@ -34,11 +34,19 @@ arithmetic, logical, and comparison operator, so
 | `-`      | Numeric negation                      |
 | `!`      | Logical not                           |
 | `+/`     | Reduction by `+` (sum)                |
+| `-/`     | Reduction by `-` (left fold)          |
 | `*/`     | Reduction by `*` (product)            |
-| `-/`     | Reduction by `-`                      |
+| `//`     | Reduction by `/` (left fold)          |
 
 `<op>/` is read as the prefix reduction operator; the `op` part is
-any binary operator the element type defines.
+any binary operator the element type defines. `+/` and `*/` are
+commutative and may lower to a SIMD horizontal reduce; `-/` and `//`
+are non-commutative, fold strictly left-to-right
+(`-/[a,b,c] = (a - b) - c`), and lower as scalar chains so that
+floating-point rounding matches the surface expression.
+
+Because `//` is the divide-reduction operator, line comments use `#`
+(see [Lexical structure](lexical)).
 
 ## Postfix forms
 
@@ -51,12 +59,12 @@ record types).
 ## Examples by precedence
 
 ```esque
-a + b * c          // a + (b * c)
-a .* b .+ c        // (a .* b) .+ c
-0..n + 1           // 0..(n + 1)         (.. is precedence 15, + is 20)
-a < b && c < d     // (a < b) && (c < d)
-x |> f |> g        // g(f(x))             (left-assoc)
-x as i32 + 1       // (x as i32) + 1
+a + b * c          # a + (b * c)
+a .* b .+ c        # (a .* b) .+ c
+0..n + 1           # 0..(n + 1)         (.. is precedence 15, + is 20)
+a < b && c < d     # (a < b) && (c < d)
+x |> f |> g        # g(f(x))             (left-assoc)
+x as i32 + 1       # (x as i32) + 1
 ```
 
 ## Notes on element-wise vs scalar

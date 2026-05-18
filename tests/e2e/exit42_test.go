@@ -755,6 +755,31 @@ func runE2EStdoutExitTest(t *testing.T, srcFile, exeName, wantStdout string, wan
 	}
 }
 
+// TestReduceSubI32 (v0.14) exercises the left-fold subtract reduction
+// `-/` on an i32 tensor: ((100-10)-20)-28 = 42.
+func TestReduceSubI32(t *testing.T) {
+	runE2ETest(t, "reduce_sub_i32.esq", "reduce_sub_i32", 42)
+}
+
+// TestReduceSubF32 (v0.14) exercises `-/` on an f32 tensor with a
+// trailing `as i32` cast: ((50-4)-3)-1 = 42.
+func TestReduceSubF32(t *testing.T) {
+	runE2ETest(t, "reduce_sub_f32.esq", "reduce_sub_f32", 42)
+}
+
+// TestReduceDivI32 (v0.14) exercises `//` on an i32 tensor:
+// ((840/2)/5)/2 = 42. Pins down the new reduction operator and the
+// fact that `//` is no longer a comment.
+func TestReduceDivI32(t *testing.T) {
+	runE2ETest(t, "reduce_div_i32.esq", "reduce_div_i32", 42)
+}
+
+// TestReduceDivF32 (v0.14) exercises `//` on an f32 tensor with a
+// trailing `as i32` cast: ((504/2)/3)/2 = 42.
+func TestReduceDivF32(t *testing.T) {
+	runE2ETest(t, "reduce_div_f32.esq", "reduce_div_f32", 42)
+}
+
 // runE2ETest is a helper that compiles and runs a test program, checking the exit code.
 func runE2ETest(t *testing.T, srcFile, exeName string, expectedExitCode int) {
 	t.Helper()

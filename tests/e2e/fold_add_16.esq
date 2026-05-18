@@ -1,11 +1,11 @@
-// Sum-reduction over 16 f32 elements: exercises (a) the strip-mined
-// AVX2 accumulator chain (two vmovups+vaddps chunks) followed by
-// horizontal reduce, and (b) the OpConstFloat-spill path in isel
-// because 16 simultaneous scalar literals exceed the 15-slot SIMD pool.
+# Sum-reduction over 16 f32 elements: exercises (a) the strip-mined
+# AVX2 accumulator chain (two vmovups+vaddps chunks) followed by
+# horizontal reduce, and (b) the OpConstFloat-spill path in isel
+# because 16 simultaneous scalar literals exceed the 15-slot SIMD pool.
 fn main() -> i32 = {
     let arr = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0,
                9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0];
-    // 1+2+...+16 = 136
+    # 1+2+...+16 = 136
     let sum = add/arr;
     sum as i32
 }

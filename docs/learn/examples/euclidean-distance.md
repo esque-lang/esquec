@@ -5,17 +5,17 @@ title: Euclidean distance
 # Euclidean distance
 
 ```esque
-// dist.esq
+# dist.esq
 fn dist[N](x: f32[N], y: f32[N]) -> f32 = {
     let d  = x .- y;
     let sq = d .* d;
-    +/(sq)         // squared distance
+    +/(sq)         # squared distance
 }
 
 fn main() -> i32 = {
     let a = [3.0, 4.0];
     let b = [0.0, 0.0];
-    dist(a, b) as i32         // exit 25 (sqrt would be 5)
+    dist(a, b) as i32         # exit 25 (sqrt would be 5)
 }
 ```
 

@@ -1,4 +1,4 @@
-// Match expression demonstration
+# Match expression demonstration
 
 fn classify(n: i32) -> i32 = match n {
     0 => 10,
@@ -7,20 +7,20 @@ fn classify(n: i32) -> i32 = match n {
     _ => 99
 }
 
-// Match with guard
+# Match with guard
 fn sign(x: i32) -> i32 = match x {
     0 => 0,
     n if n > 0 => 1,
-    _ => 2  // Use 2 instead of -1 for clearer testing
+    _ => 2  # Use 2 instead of -1 for clearer testing
 }
 
 fn main() -> i32 = {
-    let a = classify(1);   // 20
-    let b = classify(5);   // 99
-    let c = sign(-10);     // 2
-    let d = sign(42);      // 1
-    let e = sign(0);       // 0
+    let a = classify(1);   # 20
+    let b = classify(5);   # 99
+    let c = sign(-10);     # 2
+    let d = sign(42);      # 1
+    let e = sign(0);       # 0
 
-    // 20 + 99 + 2 + 1 + 0 = 122
+    # 20 + 99 + 2 + 1 + 0 = 122
     a + b + c + d + e
 }

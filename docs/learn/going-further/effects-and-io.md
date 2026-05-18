@@ -38,11 +38,11 @@ its second argument.
 @io fn shout(x: i32) -> i32 = print_i32(x)
 
 @io fn main() -> i32 = {
-    each(0..3, shout);    // ok: shout is @io, main is @io
+    each(0..3, shout);    # ok: shout is @io, main is @io
     0
 }
 
-fn pure_main() -> i32 = print_i32(1)   // type error
+fn pure_main() -> i32 = print_i32(1)   # type error
 ```
 
 The type error names both sides and suggests adding the annotation

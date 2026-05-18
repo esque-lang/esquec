@@ -1,2 +1,2 @@
-// +/(tabulate(5, |i| i*i)) = 0 + 1 + 4 + 9 + 16 = 30
+# +/(tabulate(5, |i| i*i)) = 0 + 1 + 4 + 9 + 16 = 30
 fn main() -> i32 = +/(tabulate(5, |i| i*i))

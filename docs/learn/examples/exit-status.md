@@ -10,7 +10,7 @@ and let the OS see it as the exit code.
 ## The program
 
 ```esque
-// hello.esq
+# hello.esq
 fn main() -> i32 = (10 + 3) * 2 - 1
 ```
 

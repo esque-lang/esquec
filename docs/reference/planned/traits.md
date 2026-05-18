@@ -29,7 +29,7 @@ impl Numeric for f32 {
 A function may take a generic with a trait bound:
 
 ```esque
-fn sum[T: Numeric, N](v: T[N]) -> T = +/(v)   // works for any Numeric T
+fn sum[T: Numeric, N](v: T[N]) -> T = +/(v)   # works for any Numeric T
 ```
 
 ## Why not today

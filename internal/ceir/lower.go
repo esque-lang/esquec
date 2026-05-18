@@ -468,6 +468,40 @@ func (c *lowerCtx) lowerExpr(e ast.Expr) (Value, error) {
 		}
 		// Check if operand is a tensor
 		if x.Type.IsTensor() {
+			// Non-commutative reductions (-/ and //) always lower as a
+			// scalar left-fold chain, regardless of element type. The
+			// SIMD reduce path is +- and *- only by design; subtract-
+			// reduce could be encoded as a - sum(tail) for SIMD f32 but
+			// it would change rounding, and divide-reduce has no
+			// commutative reformulation. Rank-1 only.
+			if n.Op == "-" || n.Op == "/" {
+				if x.Type.Rank() != 1 {
+					return Value{}, diag.Errorf(n.Span(), "ceir: rank-2+ %q reduction not supported", n.Op)
+				}
+				count := x.Type.Shape[0].Val
+				if count <= 0 {
+					return Value{}, diag.Errorf(n.X.Span(), "ceir: reduce requires concrete tensor size")
+				}
+				elemType := x.Type.ElemType()
+				var binOp Op
+				if n.Op == "-" {
+					binOp = OpSub
+				} else {
+					binOp = OpDiv
+				}
+				// Seed with the first element (left fold). count >= 1 here.
+				acc := c.fresh(elemType)
+				c.insts = append(c.insts, Inst{Result: acc, Op: OpTensorElem, Args: []Value{x}, Imm: 0})
+				for i := int64(1); i < count; i++ {
+					elem := c.fresh(elemType)
+					c.insts = append(c.insts, Inst{Result: elem, Op: OpTensorElem, Args: []Value{x}, Imm: i})
+					newAcc := c.fresh(elemType)
+					c.insts = append(c.insts, Inst{Result: newAcc, Op: binOp, Args: []Value{acc, elem}})
+					acc = newAcc
+				}
+				return acc, nil
+			}
+
 			// Integer reductions: the MIR/x86 reduce path is f32-specific
 			// (it uses haddps/addps), so for i32 tensors we expand the
 			// reduction inline as a scalar OpAdd/OpMul chain. Rank-1 only;

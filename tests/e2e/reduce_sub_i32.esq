@@ -1,0 +1,6 @@
+# v0.14: left-fold subtract reduction over an i32 tensor.
+# -/[100, 10, 20, 28] = ((100 - 10) - 20) - 28 = 42.
+fn main() -> i32 = {
+    let arr = [100, 10, 20, 28];
+    -/arr
+}

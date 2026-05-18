@@ -47,7 +47,7 @@ fn factorial(n: i32) -> i32 = {
     else { n * factorial(n - 1) }
 }
 
-fn main() -> i32 = factorial(5)   // 120
+fn main() -> i32 = factorial(5)   # 120
 ```
 
 esque is fine with self-recursion and mutual recursion. The compiler
@@ -61,7 +61,7 @@ inline arguments to higher-order primitives like `tabulate`, `scan`,
 and `iterate_until`:
 
 ```esque
-fn main() -> i32 = +/(tabulate(5, |i| i*i))   // 0+1+4+9+16 = 30
+fn main() -> i32 = +/(tabulate(5, |i| i*i))   # 0+1+4+9+16 = 30
 ```
 
 Binding a lambda to a `let` and calling it later is **not** supported
@@ -80,14 +80,14 @@ fn add_one(x: i32) -> i32 = x + 1
 fn square(x: i32) -> i32 = x * x
 
 fn main() -> i32 = 3 |> double |> add_one |> square
-//                  = square(add_one(double(3))) = square(7) = 49
+#                  = square(add_one(double(3))) = square(7) = 49
 ```
 
 `x |> f(y)` is `f(x, y)`:
 
 ```esque
 fn add(a: i32, b: i32) -> i32 = a + b
-fn main() -> i32 = 10 |> add(5)   // = add(10, 5) = 15
+fn main() -> i32 = 10 |> add(5)   # = add(10, 5) = 15
 ```
 
 Pipelines are *just syntax*. They lower to the same calls you would
@@ -107,8 +107,8 @@ the actual tensor shape and the compiler emits one specialised copy
 per `N` it sees:
 
 ```esque
-fn use_a(x: f32[4], y: f32[4]) -> f32 = dot(x, y)   // emits dot__4
-fn use_b(x: f32[8], y: f32[8]) -> f32 = dot(x, y)   // emits dot__8
+fn use_a(x: f32[4], y: f32[4]) -> f32 = dot(x, y)   # emits dot__4
+fn use_b(x: f32[8], y: f32[8]) -> f32 = dot(x, y)   # emits dot__8
 ```
 
 Shape parameters can take an explicit kind: `[N: nat]` is the same as

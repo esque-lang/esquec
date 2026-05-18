@@ -15,8 +15,12 @@ char literals.
 | Form                | Effect                          |
 |---------------------|---------------------------------|
 | ` `, `\t`, `\n`, `\r` | Whitespace; separates tokens. |
-| `// ...`            | Line comment, to end of line.   |
+| `# ...`             | Line comment, to end of line.   |
 | `/* ... */`         | Block comment, **nestable**.    |
+
+Line comments use `#` as of v0.14. The pre-v0.14 line-comment lead-in
+`//` is now the divide-reduction operator (see
+[Operators and precedence](operators)).
 
 ## Identifiers
 
@@ -50,9 +54,9 @@ can be used as variable names. (See
 
 ```
 42
-1_000_000        // underscores allowed
-99_i32           // explicit type suffix
-'A'              // char literal: i32 codepoint
+1_000_000        # underscores allowed
+99_i32           # explicit type suffix
+'A'              # char literal: i32 codepoint
 ```
 
 | Suffix | Type | Codegen status |

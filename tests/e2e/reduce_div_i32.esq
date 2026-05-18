@@ -1,0 +1,6 @@
+# v0.14: left-fold divide reduction over an i32 tensor.
+# //[840, 2, 5, 2] = ((840 / 2) / 5) / 2 = 42.
+fn main() -> i32 = {
+    let arr = [840, 2, 5, 2];
+    //arr
+}

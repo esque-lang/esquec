@@ -28,9 +28,9 @@ types. The compiler will not let you confuse them.
 A bracketed list of values is a tensor literal:
 
 ```esque
-[1.0, 2.0, 3.0]              // f32[3]
-[1, 2, 3, 4]                 // i32[4]
-[[1.0, 2.0], [3.0, 4.0]]     // f32[2, 2]
+[1.0, 2.0, 3.0]              # f32[3]
+[1, 2, 3, 4]                 # i32[4]
+[[1.0, 2.0], [3.0, 4.0]]     # f32[2, 2]
 ```
 
 Constant tensor literals are placed in `.rodata` at link time and
@@ -50,8 +50,8 @@ Each scalar arithmetic operator has a "dotted" tensor counterpart:
 ```esque
 let a = [1.0, 2.0, 3.0];
 let b = [4.0, 5.0, 6.0];
-a .+ b                    // [5.0, 7.0, 9.0]
-a .* b                    // [4.0, 10.0, 18.0]
+a .+ b                    # [5.0, 7.0, 9.0]
+a .* b                    # [4.0, 10.0, 18.0]
 ```
 
 Both operands must have the same type, including shape. Broadcasting
@@ -65,9 +65,9 @@ across the elements:
 
 ```esque
 let a = [1.0, 2.0, 3.0];
-let s = +/(a);            // 1.0 + 2.0 + 3.0 = 6.0
-let p = */(a);            // 1.0 * 2.0 * 3.0 = 6.0
-let dot = +/(a .* a);     // sum of squares
+let s = +/(a);            # 1.0 + 2.0 + 3.0 = 6.0
+let p = */(a);            # 1.0 * 2.0 * 3.0 = 6.0
+let dot = +/(a .* a);     # sum of squares
 ```
 
 A reduction is just an operator with `/` after it. It works for any
@@ -81,8 +81,8 @@ fn dot[N](x: f32[N], y: f32[N]) -> f32 = +/(x .* y)
 fn main() -> i32 = {
     let a = [1.0, 2.0, 3.0];
     let b = [4.0, 5.0, 6.0];
-    let result = dot(a, b);     // 32.0
-    result as i32                // exit 32
+    let result = dot(a, b);     # 32.0
+    result as i32                # exit 32
 }
 ```
 
@@ -94,7 +94,7 @@ expression; the compiler picks the lanes.
 ## Building tensors with `tabulate`
 
 ```esque
-tabulate(5, |i| i * i)    // [0, 1, 4, 9, 16]
+tabulate(5, |i| i * i)    # [0, 1, 4, 9, 16]
 ```
 
 `tabulate(N, f)` calls `f(0)`, `f(1)`, … `f(N-1)` and packs the
@@ -108,15 +108,15 @@ literal `≤ 32`. Larger `N` falls under the planned
 ## Index ranges as tensors
 
 ```esque
-0..5      // i32[5] = [0, 1, 2, 3, 4]
-1..=5     // i32[5] = [1, 2, 3, 4, 5]
+0..5      # i32[5] = [0, 1, 2, 3, 4]
+1..=5     # i32[5] = [1, 2, 3, 4, 5]
 ```
 
 A range is just a tensor. You can pipe it, reduce it, map it:
 
 ```esque
-+/(0..5)              // 10
-+/(tabulate(5, |i| i * 2))   // 20
++/(0..5)              # 10
++/(tabulate(5, |i| i * 2))   # 20
 ```
 
 Today both bounds must be literal integers and the size must be
@@ -130,7 +130,7 @@ or after a reduction:
 
 ```esque
 let dot_f = +/(a .* b);
-dot_f as i32              // truncate to int (exit code, etc.)
+dot_f as i32              # truncate to int (exit code, etc.)
 ```
 
 A whole-tensor `as` (e.g. `f32[3] as i32[3]`) is not yet implemented;

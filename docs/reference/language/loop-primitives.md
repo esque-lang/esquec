@@ -10,8 +10,8 @@ is the formal reference for the loop primitives that replace them.
 ## Range
 
 ```
-lo..hi      // i32[hi - lo]   exclusive
-lo..=hi     // i32[hi - lo + 1] inclusive
+lo..hi      # i32[hi - lo]   exclusive
+lo..=hi     # i32[hi - lo + 1] inclusive
 ```
 
 **Constraints:**

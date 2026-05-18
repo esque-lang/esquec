@@ -1,8 +1,8 @@
-// Sum-reduction over 8 f32 elements: exercises the AVX2 horizontal-SIMD
-// reduction fast path (vextractf128 + addps + haddps + haddps).
+# Sum-reduction over 8 f32 elements: exercises the AVX2 horizontal-SIMD
+# reduction fast path (vextractf128 + addps + haddps + haddps).
 fn main() -> i32 = {
     let arr = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0];
-    // 1+2+3+4+5+6+7+8 = 36
+    # 1+2+3+4+5+6+7+8 = 36
     let sum = add/arr;
     sum as i32
 }

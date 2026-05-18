@@ -1,5 +1,5 @@
-// Example 05: Boolean logic
-// Demonstrates: &&, ||, !, comparisons, bool type
+# Example 05: Boolean logic
+# Demonstrates: &&, ||, !, comparisons, bool type
 
 fn is_positive(x: i32) -> bool = x > 0
 
@@ -8,11 +8,11 @@ fn is_negative(x: i32) -> bool = x < 0
 fn is_zero(x: i32) -> bool = x == 0
 
 fn main() -> i32 = {
-    // Test simple boolean functions
-    let a = is_positive(5);   // true
-    let b = is_negative(-3);  // true
-    let c = is_zero(0);       // true
+    # Test simple boolean functions
+    let a = is_positive(5);   # true
+    let b = is_negative(-3);  # true
+    let c = is_zero(0);       # true
 
-    // All three should be true
+    # All three should be true
     if a && b && c { 1 } else { 0 }
 }

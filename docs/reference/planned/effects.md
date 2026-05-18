@@ -19,8 +19,8 @@ syntax planned for `@kernel`/`@grad`/`@inline`:
 
 ```esque
 @io fn print_line(s: string) -> i32 = print_str(s)
-@io fn caller() -> i32 = print_line("hi")    // @io propagates
-fn pure() -> i32 = print_line("hi")          // type error
+@io fn caller() -> i32 = print_line("hi")    # @io propagates
+fn pure() -> i32 = print_line("hi")          # type error
 ```
 
 Effects compose: if a function calls any `@io` function its

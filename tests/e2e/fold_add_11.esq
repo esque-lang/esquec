@@ -1,8 +1,8 @@
-// Sum-reduction over 11 f32 elements: exercises the strip-mined SIMD
-// body for the 8-aligned prefix plus the 3-element scalar tail.
+# Sum-reduction over 11 f32 elements: exercises the strip-mined SIMD
+# body for the 8-aligned prefix plus the 3-element scalar tail.
 fn main() -> i32 = {
     let arr = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0];
-    // 1+2+...+11 = 66
+    # 1+2+...+11 = 66
     let sum = add/arr;
     sum as i32
 }

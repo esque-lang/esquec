@@ -19,7 +19,7 @@ fn loss[N](w: f32[N], x: f32[N], y: f32) -> f32 {
     err * err
 }
 
-// the @grad attribute requests the compiler synthesise a gradient
+# the @grad attribute requests the compiler synthesise a gradient
 @grad(w)
 fn dloss_dw[N](w: f32[N], x: f32[N], y: f32) -> f32[N] = loss(w, x, y)
 ```

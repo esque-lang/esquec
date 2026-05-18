@@ -28,6 +28,18 @@ jobs:
 
       - run: go mod download
 
+      # v0.14 made `//` the divide-reduction operator and moved line
+      # comments to `#`. Operator uses are conventionally close-packed
+      # (`//arr`), so a `//` followed by whitespace is almost always a
+      # stale comment. If you actually need `// (expr)` style spacing,
+      # restructure to `//(expr)` or use a `let`.
+      - name: Reject stale `//` line comments in .esq sources
+        run: |
+          if grep -rEn '//[ \t]' --include='*.esq' .; then
+            echo "::error::Stale `//` line comment found — use `#` (see issue #1)."
+            exit 1
+          fi
+
       - run: go vet ./...
 
       - run: go build ./...

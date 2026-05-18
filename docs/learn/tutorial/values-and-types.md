@@ -46,7 +46,7 @@ Char literals are i32-typed integer constants holding the Unicode
 codepoint:
 
 ```esque
-fn main() -> i32 = 'A'   // exit 65
+fn main() -> i32 = 'A'   # exit 65
 ```
 
 ### Float literals
@@ -86,7 +86,7 @@ to "update" something, write a new binding:
 ```esque
 fn main() -> i32 = {
     let x = 10;
-    let x = x + 1;   // shadows; not mutation
+    let x = x + 1;   # shadows; not mutation
     x
 }
 ```
@@ -115,7 +115,7 @@ compiler keeps them required for readability.
 ```esque
 fn main() -> i32 = {
     let x: f32 = 3.7;
-    x as i32                  // truncates toward zero → 3
+    x as i32                  # truncates toward zero → 3
 }
 ```
 

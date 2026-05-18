@@ -41,8 +41,8 @@ fn dot[N](x: f32[N], y: f32[N]) -> f32 = +/(x .* y)
 fn main() -> i32 = {
     let a = [1.0, 2.0, 3.0];
     let b = [4.0, 5.0, 6.0];
-    let result = dot(a, b);          // 32.0
-    result as i32                     // exit code 32
+    let result = dot(a, b);          # 32.0
+    result as i32                     # exit code 32
 }
 ```
 

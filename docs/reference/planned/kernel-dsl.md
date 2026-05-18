@@ -17,11 +17,11 @@ matmul or a stencil by hand.
 kernel matmul[M, K, N](
     a: f32[M, K], b: f32[K, N]
 ) -> f32[M, N] {
-    // tile the loops
+    # tile the loops
     for i in tile(M, 32) {
         for j in tile(N, 32) {
             for k in tile(K, 8) {
-                // inner block uses element-wise on f32[32, 32], f32[32, 8]
+                # inner block uses element-wise on f32[32, 32], f32[32, 8]
                 ...
             }
         }

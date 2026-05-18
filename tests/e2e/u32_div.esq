@@ -1,5 +1,5 @@
-// v0.11: u32 unsigned division. 4_000_000_000 exceeds i32 positive
-// range, so signed semantics would either reject it at type-check or
-// produce the wrong quotient via IDIV. Unsigned-correct codegen uses
-// XOR RDX, RDX + DIV and yields 40.
+# v0.11: u32 unsigned division. 4_000_000_000 exceeds i32 positive
+# range, so signed semantics would either reject it at type-check or
+# produce the wrong quotient via IDIV. Unsigned-correct codegen uses
+# XOR RDX, RDX + DIV and yields 40.
 fn main() -> u32 = 4000000000_u32 / 100000000_u32

@@ -66,7 +66,9 @@ const (
 	TkDotSlash   // ./
 	TkDotPercent // .%
 	TkPlusSlash  // +/
+	TkMinusSlash // -/
 	TkStarSlash  // */
+	TkSlashSlash // //  (reduce-by-divide; line comments are `#`)
 	TkDotDot     // ..
 	TkDotDotEq   // ..=
 )
@@ -188,8 +190,12 @@ func (k Kind) String() string {
 		return ".%"
 	case TkPlusSlash:
 		return "+/"
+	case TkMinusSlash:
+		return "-/"
 	case TkStarSlash:
 		return "*/"
+	case TkSlashSlash:
+		return "//"
 	case TkDotDot:
 		return ".."
 	case TkDotDotEq:

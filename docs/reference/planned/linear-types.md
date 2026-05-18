@@ -13,10 +13,10 @@ types, sufficient to support in-place updates and dynamic shapes
 without runtime cost:
 
 ```
-T            // value (small, copyable; for tensors: a handle)
-&T           // shared, immutable borrow
-&mut T       // exclusive, mutable borrow
-!T           // linear: must be consumed exactly once
+T            # value (small, copyable; for tensors: a handle)
+&T           # shared, immutable borrow
+&mut T       # exclusive, mutable borrow
+!T           # linear: must be consumed exactly once
 ```
 
 Plus `mut` re-introduced on `let` bindings, and `+=` / `.+=` /

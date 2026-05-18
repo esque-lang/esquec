@@ -172,12 +172,13 @@ func TestLexIntTypeSuffix(t *testing.T) {
 }
 
 func TestLexTensorOps(t *testing.T) {
-	toks := tokens(t, "a .+ b .- c .* d ./ e +/ f */ g @ h |> i")
+	toks := tokens(t, "a .+ b .- c .* d ./ e +/ f -/ g */ h // i @ j |> k")
 	got := kinds(toks)
 	want := []Kind{
 		TkIdent, TkDotPlus, TkIdent, TkDotMinus, TkIdent, TkDotStar, TkIdent,
-		TkDotSlash, TkIdent, TkPlusSlash, TkIdent, TkStarSlash, TkIdent,
-		TkAt, TkIdent, TkPipe, TkIdent,
+		TkDotSlash, TkIdent, TkPlusSlash, TkIdent, TkMinusSlash, TkIdent,
+		TkStarSlash, TkIdent, TkSlashSlash, TkIdent, TkAt, TkIdent, TkPipe,
+		TkIdent,
 	}
 	if len(got) != len(want) {
 		t.Fatalf("got %v\nwant %v", got, want)
@@ -190,9 +191,22 @@ func TestLexTensorOps(t *testing.T) {
 }
 
 func TestLexComments(t *testing.T) {
-	toks := tokens(t, "// comment\nfn /* nested /* block */ */ x")
+	toks := tokens(t, "# comment\nfn /* nested /* block */ */ x")
 	got := kinds(toks)
 	want := []Kind{TkFn, TkIdent}
+	if len(got) != len(want) {
+		t.Fatalf("got %v want %v", got, want)
+	}
+}
+
+// TestLexReduceVsComment locks in the v0.14 disambiguation: `//`
+// produces TkSlashSlash (reduction operator), and `#` is the only
+// line-comment lead-in.
+func TestLexReduceVsComment(t *testing.T) {
+	// `//` is the reduction operator; the trailing `# tail` is a comment.
+	toks := tokens(t, "//xs  # tail")
+	got := kinds(toks)
+	want := []Kind{TkSlashSlash, TkIdent}
 	if len(got) != len(want) {
 		t.Fatalf("got %v want %v", got, want)
 	}

@@ -12,8 +12,8 @@ read is large enough that they get their own page.
 ## The pipeline operator
 
 ```esque
-x |> f         // = f(x)
-x |> f(y)      // = f(x, y)
+x |> f         # = f(x)
+x |> f(y)      # = f(x, y)
 ```
 
 That is the whole rule. `|>` is left-associative so chains read top
@@ -21,7 +21,7 @@ to bottom:
 
 ```esque
 3 |> double |> add_one |> square
-// = square(add_one(double(3)))
+# = square(add_one(double(3)))
 ```
 
 When the pipelined expression already takes one argument, the
@@ -29,7 +29,7 @@ piped value is inserted *first*:
 
 ```esque
 fn add(a: i32, b: i32) -> i32 = a + b
-10 |> add(5)         // = add(10, 5) = 15
+10 |> add(5)         # = add(10, 5) = 15
 ```
 
 `|>` exists because most numeric pipelines look like a stack of
@@ -51,8 +51,8 @@ things you computed earlier, give it a name with `let` instead.
 operator across the elements:
 
 ```esque
-+/([1.0, 2.0, 3.0])     // 6.0
-*/([1, 2, 3, 4])        // 24
++/([1.0, 2.0, 3.0])     # 6.0
+*/([1, 2, 3, 4])        # 24
 ```
 
 Any binary operator that is defined on the element type works:
@@ -98,15 +98,15 @@ indices, if used) plus an SIMD reduction. When the lambda is
 The same shape works on ranges:
 
 ```esque
-+/(0..5)        // 10
-+/(1..=5)       // 15
++/(0..5)        # 10
++/(1..=5)       # 15
 ```
 
 ## Combining pipelines and reductions
 
 ```esque
 fn rms[N](x: f32[N]) -> f32 = {
-    let n  = N as f32;            // hypothetical: shape values as scalars
+    let n  = N as f32;            # hypothetical: shape values as scalars
     let sq = x .* x;
     +/(sq) / n
 }

@@ -1,11 +1,11 @@
-// Regression: f32 SSA values must survive across @io calls.
-//
-// SIMD registers are caller-saved on System V AMD64. Before this fix,
-// the regalloc did not save/restore live XMM/YMM values across
-// OpCall, so `a` below was clobbered by print_f32 and the post-call
-// `a * 21.0` consumed garbage instead of 2.0.
-//
-// Now: a = 2.0 -> print "2.000000" -> a*21.0 = 42.0 -> exit 42.
+# Regression: f32 SSA values must survive across @io calls.
+#
+# SIMD registers are caller-saved on System V AMD64. Before this fix,
+# the regalloc did not save/restore live XMM/YMM values across
+# OpCall, so `a` below was clobbered by print_f32 and the post-call
+# `a * 21.0` consumed garbage instead of 2.0.
+#
+# Now: a = 2.0 -> print "2.000000" -> a*21.0 = 42.0 -> exit 42.
 
 @io fn main() -> i32 = {
     let a = 2.0;

@@ -866,12 +866,20 @@ func (p *parser) parseUnary() (ast.Expr, error) {
 			SpanRng: diag.Span{Start: opSpan.Start, End: x.Span().End},
 		}, nil
 	}
-	// Reduction operators: +/ */
-	if p.cur.Kind == lex.TkPlusSlash || p.cur.Kind == lex.TkStarSlash {
+	// Reduction operators: +/ -/ */ //
+	switch p.cur.Kind {
+	case lex.TkPlusSlash, lex.TkMinusSlash, lex.TkStarSlash, lex.TkSlashSlash:
 		opSpan := p.cur.Span
-		op := "+"
-		if p.cur.Kind == lex.TkStarSlash {
+		var op string
+		switch p.cur.Kind {
+		case lex.TkPlusSlash:
+			op = "+"
+		case lex.TkMinusSlash:
+			op = "-"
+		case lex.TkStarSlash:
 			op = "*"
+		case lex.TkSlashSlash:
+			op = "/"
 		}
 		if err := p.bump(); err != nil {
 			return nil, err

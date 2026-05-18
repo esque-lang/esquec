@@ -5,14 +5,14 @@ title: Dot product
 # Dot product
 
 ```esque
-// dot.esq
+# dot.esq
 fn dot[N](x: f32[N], y: f32[N]) -> f32 = +/(x .* y)
 
 fn main() -> i32 = {
     let a = [1.0, 2.0, 3.0];
     let b = [4.0, 5.0, 6.0];
-    let result = dot(a, b);     // 32.0
-    result as i32                // exit 32
+    let result = dot(a, b);     # 32.0
+    result as i32                # exit 32
 }
 ```
 
@@ -60,7 +60,7 @@ A shape-generic `rms` (root mean square) is one extra line:
 ```esque
 fn rms[N](x: f32[N]) -> f32 = {
     let sq = x .* x;
-    +/(sq) / 3.0          // hardcoded N=3 until shape-as-value lands
+    +/(sq) / 3.0          # hardcoded N=3 until shape-as-value lands
 }
 ```
 

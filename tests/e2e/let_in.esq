@@ -1,7 +1,7 @@
-// `let x = e in body` expression form (v0.12).
-//
-// Single-expression function body using nested let-in: a = 10,
-// b = 20, c = a + b. Returns c + 12 = 42.
+# `let x = e in body` expression form (v0.12).
+#
+# Single-expression function body using nested let-in: a = 10,
+# b = 20, c = a + b. Returns c + 12 = 42.
 fn main() -> i32 =
     let a = 10 in
     let b = 20 in

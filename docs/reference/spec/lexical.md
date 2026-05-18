@@ -20,11 +20,13 @@ significant only as a token separator.
 ## Comments
 
 ```
-// line comment, ends at newline
+# line comment, ends at newline
 /* block comment, nestable */
 ```
 
-Comments are equivalent to whitespace.
+Comments are equivalent to whitespace. The line-comment lead-in is
+`#` as of v0.14; `//` is reserved for the divide-reduction operator
+(see [Expressions](expressions)).
 
 ## Tokens
 

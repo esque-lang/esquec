@@ -152,6 +152,15 @@ func TestCheckRangeAccept(t *testing.T) {
 	mustCheck(t, `fn k() -> i32 = +/(1..=5)`)
 }
 
+// TestCheckReduceOpsAccept: all four reduction operators type-check on
+// numeric tensors (v0.14).
+func TestCheckReduceOpsAccept(t *testing.T) {
+	mustCheck(t, `fn k() -> i32 = +/[10, 1, 2, 3]`)
+	mustCheck(t, `fn k() -> i32 = -/[10, 1, 2, 3]`)
+	mustCheck(t, `fn k() -> i32 = */[2, 3, 4]`)
+	mustCheck(t, `fn k() -> i32 = //[120, 2, 3]`)
+}
+
 // TestCheckRangeRejectNonConst: dynamic bounds rejected.
 // In v0.11 const-foldable arithmetic is allowed (see TestCheckRangeConstArith);
 // only references to runtime values like parameters remain rejected.

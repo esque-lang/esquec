@@ -19,7 +19,9 @@
         greedy: true,
       },
       {
-        pattern: /\/\/.*/,
+        // Line comments use `#` as of v0.14 — `//` is the
+        // divide-reduction operator (see Prism.languages.esque.operator).
+        pattern: /#.*/,
         greedy: true,
       },
     ],
@@ -47,7 +49,7 @@
     'number':
       /\b\d[\d_]*(?:\.\d[\d_]*)?(?:[eE][+-]?\d+)?(?:_[iuf](?:8|16|32|64))?\b/,
     'operator':
-      /\.\.=?|\|>|->|=>|==|!=|<=|>=|&&|\|\||\.[+\-*/%]|[+*]\/|[+\-*/%=<>!@|]/,
+      /\.\.=?|\|>|->|=>|==|!=|<=|>=|&&|\|\||\.[+\-*/%]|[+\-*/]\/|[+\-*/%=<>!@|]/,
     'punctuation': /[{}[\]();,:]/,
   };
 }(Prism));

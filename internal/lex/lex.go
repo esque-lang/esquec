@@ -55,7 +55,10 @@ func (l *Lexer) skipWhitespaceAndComments() error {
 		switch {
 		case c == ' ' || c == '\t' || c == '\n' || c == '\r':
 			l.advance()
-		case c == '/' && l.off+1 < len(l.src) && l.src[l.off+1] == '/':
+		case c == '#':
+			// `#` opens a line comment that runs to the end of the line.
+			// Line comments switched from `//` to `#` in v0.14 so that
+			// `//` is free as the divide-reduction operator.
 			for l.off < len(l.src) && l.peek() != '\n' {
 				l.advance()
 			}
@@ -303,6 +306,10 @@ func (l *Lexer) Next() (Token, error) {
 
 	case '/':
 		l.advance()
+		if l.peek() == '/' {
+			l.advance()
+			return Token{Kind: TkSlashSlash, Lit: "//", Span: diag.Span{Start: start, End: l.pos()}}, nil
+		}
 		return Token{Kind: TkSlash, Lit: "/", Span: diag.Span{Start: start, End: l.pos()}}, nil
 	case '%':
 		l.advance()
@@ -331,6 +338,10 @@ func (l *Lexer) Next() (Token, error) {
 		if l.peek() == '>' {
 			l.advance()
 			return Token{Kind: TkArrow, Lit: "->", Span: diag.Span{Start: start, End: l.pos()}}, nil
+		}
+		if l.peek() == '/' {
+			l.advance()
+			return Token{Kind: TkMinusSlash, Lit: "-/", Span: diag.Span{Start: start, End: l.pos()}}, nil
 		}
 		return Token{Kind: TkMinus, Lit: "-", Span: diag.Span{Start: start, End: l.pos()}}, nil
 	}

@@ -24,9 +24,9 @@ non-trivial shape expressions awaits the planned const-eval work.
 ## Tensor literals
 
 ```
-[1.0, 2.0, 3.0]                       // f32[3]
-[1, 2, 3, 4]                          // i32[4]
-[[1.0, 2.0], [3.0, 4.0]]              // f32[2, 2]
+[1.0, 2.0, 3.0]                       # f32[3]
+[1, 2, 3, 4]                          # i32[4]
+[[1.0, 2.0], [3.0, 4.0]]              # f32[2, 2]
 ```
 
 The element type is inferred from the first element. The shape is
@@ -36,8 +36,8 @@ literals are a type error.
 ## Range expressions
 
 ```
-0..5         // i32[5] = [0, 1, 2, 3, 4]   (exclusive)
-1..=5        // i32[5] = [1, 2, 3, 4, 5]   (inclusive)
+0..5         # i32[5] = [0, 1, 2, 3, 4]   (exclusive)
+1..=5        # i32[5] = [1, 2, 3, 4, 5]   (inclusive)
 ```
 
 Both bounds must be integer literals today. The element type is
@@ -62,9 +62,10 @@ broadcasting today; matched shapes only.
 `<op>/(v)` folds `op` across `v`'s elements:
 
 ```
-+/(v)    // sum
-*/(v)    // product
--/(v)    // running diff (rare; usually use scan)
++/(v)    # sum
+-/(v)    # running difference (left fold)
+*/(v)    # product
+//(v)    # running quotient (left fold)
 ```
 
 Reductions take a tensor and return a scalar of the element type.

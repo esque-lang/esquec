@@ -5,8 +5,8 @@ title: Scan / prefix sum
 # Scan / prefix sum
 
 ```esque
-// prefix.esq
-// scan(0, |a, x| a+x, [1,2,3,4]) = [1, 3, 6, 10]; +/ = 20
+# prefix.esq
+# scan(0, |a, x| a+x, [1,2,3,4]) = [1, 3, 6, 10]; +/ = 20
 fn main() -> i32 = +/(scan(0, |a, x| a + x, [1, 2, 3, 4]))
 ```
 

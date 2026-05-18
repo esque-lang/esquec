@@ -82,9 +82,10 @@ but does not yet codegen.
 `<op>/` reduces a tensor to a scalar by left-folding `op`:
 
 ```
-+/(v)    // sum
-*/(v)    // product
--/(v)    // running difference (rare; usually use scan)
++/(v)    # sum
+-/(v)    # running difference (left fold)
+*/(v)    # product
+//(v)    # running quotient (left fold)
 ```
 
 The reduction operator is parametric in the operator: any binary
@@ -94,16 +95,16 @@ operator the element type defines can be used. Axis-aware reduction
 ## Comparisons and logical operators
 
 ```
-== != < <= > >=     // any equality-supporting T, T -> bool
-&& ||               // bool, bool -> bool
-!                   // bool -> bool
+== != < <= > >=     # any equality-supporting T, T -> bool
+&& ||               # bool, bool -> bool
+!                   # bool -> bool
 ```
 
 ## Pipeline
 
 ```
-x |> f          // = f(x)
-x |> f(y, z)    // = f(x, y, z)
+x |> f          # = f(x)
+x |> f(y, z)    # = f(x, y, z)
 ```
 
 Left-associative; precedence 1 (the loosest binary op). The piped
@@ -112,8 +113,8 @@ value always becomes the first argument.
 ## Range expressions
 
 ```
-lo..hi      // exclusive
-lo..=hi     // inclusive
+lo..hi      # exclusive
+lo..=hi     # inclusive
 ```
 
 A range expression evaluates to a rank-1 `i32` tensor of the

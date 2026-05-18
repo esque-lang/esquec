@@ -36,6 +36,10 @@ in the parser.
 - **Byte-level for ASCII, validated for non-ASCII inside string and
   char literals.** This avoids runtime regex but accepts the full
   Unicode codepoint range inside `'...'`.
+- **Line comments use `#`**, not `//`. `//` is the divide-reduction
+  operator (`TkSlashSlash`); `-/` is subtract-reduction
+  (`TkMinusSlash`). The line-comment lead-in moved to `#` in v0.14
+  so the operator surface could complete.
 - **Block comments are nestable**: `/* /* nested */ still inside */`.
   This is a deliberate divergence from C.
 - **Spans are byte offsets** into the original source, plus a 1-based

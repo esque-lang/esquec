@@ -24,16 +24,16 @@ This page is a tour of all of them.
 ## Ranges: `lo..hi` and `lo..=hi`
 
 ```esque
-0..5      // i32[5] = [0, 1, 2, 3, 4]
-1..=5     // i32[5] = [1, 2, 3, 4, 5]
+0..5      # i32[5] = [0, 1, 2, 3, 4]
+1..=5     # i32[5] = [1, 2, 3, 4, 5]
 ```
 
 A range expression is a tensor literal expressed as bounds. Use it
 wherever a tensor is expected:
 
 ```esque
-+/(0..5)              // 10
-+/(0..=5)             // 15
++/(0..5)              # 10
++/(0..=5)             # 15
 ```
 
 Both bounds must be integer literals today (or constants the compiler
@@ -50,8 +50,8 @@ generate a megabyte of `.rodata`.
 `f(N-1)`:
 
 ```esque
-tabulate(5, |i| i * i)                // [0, 1, 4, 9, 16]
-tabulate(8, |i| if i < 4 { 0 } else { 1 })   // [0,0,0,0,1,1,1,1]
+tabulate(5, |i| i * i)                # [0, 1, 4, 9, 16]
+tabulate(8, |i| if i < 4 { 0 } else { 1 })   # [0,0,0,0,1,1,1,1]
 ```
 
 Where C would write `for (int i = 0; i < N; i++) v[i] = f(i);`,
@@ -70,7 +70,7 @@ the emitted code.
 and a tensor:
 
 ```esque
-scan(0, |a, x| a + x, [1, 2, 3, 4])    // [1, 3, 6, 10]
+scan(0, |a, x| a + x, [1, 2, 3, 4])    # [1, 3, 6, 10]
 ```
 
 The output has the same length as the input. Element `i` is the
@@ -80,7 +80,7 @@ A typical use is a running sum or max:
 
 ```esque
 let v        = [3, 1, 4, 1, 5, 9, 2, 6];
-let prefixes = scan(0, |a, x| a + x, v);   // [3,4,8,9,14,23,25,31]
+let prefixes = scan(0, |a, x| a + x, v);   # [3,4,8,9,14,23,25,31]
 let running_max = scan(0, |a, x| if x > a { x } else { a }, v);
 ```
 
@@ -92,7 +92,7 @@ inputs it emits a runtime loop (`OpScanLoop`, v0.11).
 The bounded fixpoint:
 
 ```esque
-iterate_until(0, |s| s + 1, |s| s == 7, 10)    // 7
+iterate_until(0, |s| s + 1, |s| s == 7, 10)    # 7
 ```
 
 Read it as: start at `init`. Apply `step` repeatedly. After each
@@ -102,7 +102,7 @@ Stop after `max` iterations no matter what.
 `max` is required and is a hard cap — there is no infinite loop.
 
 ```esque
-// Newton's method for sqrt(2), six iterations max.
+# Newton's method for sqrt(2), six iterations max.
 fn main() -> i32 = {
     let close = iterate_until(
         2.0,
@@ -110,7 +110,7 @@ fn main() -> i32 = {
         |x| x * x - 2.0 < 0.001 && x * x - 2.0 > -0.001,
         6
     );
-    close as i32                  // 1
+    close as i32                  # 1
 }
 ```
 
@@ -123,7 +123,7 @@ The inherited fixed-iteration sibling, `iterate(n, init, f)`, is
 also available — it just runs `f` exactly `n` times:
 
 ```esque
-let result = iterate(5, 1.0, |x| x * 2.0);   // 32.0
+let result = iterate(5, 1.0, |x| x * 2.0);   # 32.0
 ```
 
 ## `each(v, f)`
@@ -133,7 +133,7 @@ over a tensor and calls `f` on each element for its effect:
 
 ```esque
 @io fn main() -> i32 = {
-    each(0..5, print_i32);    // prints 0\n1\n2\n3\n4\n
+    each(0..5, print_i32);    # prints 0\n1\n2\n3\n4\n
     0
 }
 ```

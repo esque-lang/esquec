@@ -1,14 +1,14 @@
-// Benchmark: Vector addition - test capturing outer variables
+# Benchmark: Vector addition - test capturing outer variables
 fn main() -> i32 = {
     let a = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0];
     let b = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0];
     let c = a .+ b;
-    let sum_c = +/c;  // 44.0
+    let sum_c = +/c;  # 44.0
 
-    // Iterate 10 times, adding sum_c each time
+    # Iterate 10 times, adding sum_c each time
     let total = iterate(10, 0.0, |acc| acc + sum_c);
 
-    // Expected: 10 * 44 = 440
-    // 440 mod 256 = 184
+    # Expected: 10 * 44 = 440
+    # 440 mod 256 = 184
     (total / 10.0) as i32
 }

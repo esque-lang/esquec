@@ -5,7 +5,7 @@ title: Recursion
 # Recursion
 
 ```esque
-// factorial.esq
+# factorial.esq
 fn factorial(n: i32) -> i32 = {
     if n <= 1 { 1 }
     else { n * factorial(n - 1) }
@@ -38,7 +38,7 @@ fn gcd(a: i32, b: i32) -> i32 = {
     else { gcd(b, a % b) }
 }
 
-fn main() -> i32 = gcd(252, 105)   // 21
+fn main() -> i32 = gcd(252, 105)   # 21
 ```
 
 A textbook Euclidean algorithm. Pattern matching would also work but

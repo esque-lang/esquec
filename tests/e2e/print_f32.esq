@@ -1,7 +1,7 @@
-// Verifies the runtime print_f32 intrinsic. Prints three values
-// covering positive, zero/negative, and negative-fractional paths,
-// then returns 7 as the exit code so the harness can also confirm
-// the program ran to completion.
+# Verifies the runtime print_f32 intrinsic. Prints three values
+# covering positive, zero/negative, and negative-fractional paths,
+# then returns 7 as the exit code so the harness can also confirm
+# the program ran to completion.
 @io
 fn main() -> i32 = {
     print_f32(3.14);
