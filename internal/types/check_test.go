@@ -161,6 +161,25 @@ func TestCheckReduceOpsAccept(t *testing.T) {
 	mustCheck(t, `fn k() -> i32 = //[120, 2, 3]`)
 }
 
+// TestCheckReduceRejectsBool: reductions require numeric element types.
+// `-/` and `//` go through the same `IsNumeric()` gate as `+/` and
+// `*/`; this test pins the rejection for the new operators so a future
+// refactor can't quietly let a `bool[N]` reduction through.
+func TestCheckReduceRejectsBool(t *testing.T) {
+	mustReject(t, `fn k(v: bool[3]) -> bool = -/v`, "numeric")
+	mustReject(t, `fn k(v: bool[3]) -> bool = //v`, "numeric")
+}
+
+// TestCheckReduceRejectsEmpty: a left-fold reduction has no seed value
+// for an empty tensor. The typechecker already rejects empty / reversed
+// ranges (see TestCheckRangeRejectEmpty); this test pins that the
+// rejection extends to the new `-/` and `//` operators so an empty
+// tensor can never reach CEIR via them.
+func TestCheckReduceRejectsEmpty(t *testing.T) {
+	mustReject(t, `fn k() -> i32 = -/(5..5)`, "empty")
+	mustReject(t, `fn k() -> i32 = //(5..5)`, "empty")
+}
+
 // TestCheckRangeRejectNonConst: dynamic bounds rejected.
 // In v0.11 const-foldable arithmetic is allowed (see TestCheckRangeConstArith);
 // only references to runtime values like parameters remain rejected.
