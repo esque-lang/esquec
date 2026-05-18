@@ -223,9 +223,9 @@ type Pipeline struct {
 func (*Pipeline) exprNode()          {}
 func (e *Pipeline) Span() diag.Span { return e.SpanRng }
 
-// Reduce is a reduction expression: +/ arr, */ arr
+// Reduce is a reduction expression: +/ arr, -/ arr, */ arr, // arr.
 type Reduce struct {
-	Op      string // "+", "*", "max", "min"
+	Op      string // "+", "-", "*", "/", "max", "min"
 	X       Expr
 	SpanRng diag.Span
 }

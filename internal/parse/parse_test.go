@@ -536,6 +536,37 @@ func TestParseLoopKeywordsAsIdents(t *testing.T) {
 	parseStr(t, `fn k(for: i32, while: i32, break: i32, continue: i32) -> i32 = for + while + break + continue`)
 }
 
+// TestParseReduceOps locks the AST shape produced by each of the four
+// reduction-prefix operators. v0.14 added `-/` and `//`; this test
+// pins the Op-string mapping so a future parser refactor can't
+// silently flip them.
+func TestParseReduceOps(t *testing.T) {
+	cases := []struct {
+		src    string
+		wantOp string
+	}{
+		{`fn k() -> i32 = +/[1, 2, 3]`, "+"},
+		{`fn k() -> i32 = -/[10, 1, 2]`, "-"},
+		{`fn k() -> i32 = */[2, 3, 4]`, "*"},
+		{`fn k() -> i32 = //[100, 5, 2]`, "/"},
+	}
+	for _, tc := range cases {
+		f := parseStr(t, tc.src)
+		fn := f.Items[0].(*ast.FnDecl)
+		r, ok := fn.Body.(*ast.Reduce)
+		if !ok {
+			t.Errorf("%q: body not *ast.Reduce: %T", tc.src, fn.Body)
+			continue
+		}
+		if r.Op != tc.wantOp {
+			t.Errorf("%q: Op = %q, want %q", tc.src, r.Op, tc.wantOp)
+		}
+		if _, ok := r.X.(*ast.TensorLit); !ok {
+			t.Errorf("%q: Reduce.X not *ast.TensorLit: %T", tc.src, r.X)
+		}
+	}
+}
+
 func itemNames(f *ast.File) []string {
 	var out []string
 	for _, it := range f.Items {
