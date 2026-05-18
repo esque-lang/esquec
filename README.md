@@ -18,6 +18,14 @@
   <a href="go.mod"><img alt="Go version" src="https://img.shields.io/github/go-mod/go-version/esque-lang/esquec"></a>
 </p>
 
+<p align="center">
+  <a href="https://esque-lang.github.io/esquec/"><strong>esque-lang.github.io/esquec</strong></a>
+  &nbsp;·&nbsp;
+  <a href="https://esque-lang.github.io/esquec/tour">Tour</a>
+  &nbsp;·&nbsp;
+  <a href="https://esque-lang.github.io/esquec/reference/">Reference</a>
+</p>
+
 ## Highlights
 
 - **Tensors are values.** A function takes `f32[3, N]` the same way it
@@ -79,8 +87,10 @@ under `tests/e2e/`.
 
 ## Documentation
 
-Full docs (tutorial + reference + spec) live in [`docs/`](docs/) and
-are published to GitHub Pages on every push to `main`.
+The full site — tutorial, reference, and spec — is published to
+**[esque-lang.github.io/esquec](https://esque-lang.github.io/esquec/)**.
+Sources live under [`docs/`](docs/) and redeploy on every push to
+`main`.
 
 ## Releases
 
