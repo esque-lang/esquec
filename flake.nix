@@ -28,7 +28,7 @@
             meta = with pkgs.lib; {
               description = "Compiler for the esque programming language";
               homepage = "https://github.com/esque-lang/esquec";
-              license = licenses.gpl3Plus;
+              license = licenses.mit;
               mainProgram = "esquec";
               platforms = platforms.linux;
             };
