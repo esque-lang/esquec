@@ -11,8 +11,8 @@ const config = {
     v4: true,
   },
 
-  url: 'https://esque-lang.github.io',
-  baseUrl: '/',
+  url: process.env.DOCUSAURUS_URL ?? 'https://esque-lang.github.io',
+  baseUrl: process.env.DOCUSAURUS_BASE_URL ?? '/',
 
   organizationName: 'esque-lang',
   projectName: 'esquec',
