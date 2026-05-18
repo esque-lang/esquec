@@ -91,6 +91,65 @@ func TestLowerReduce(t *testing.T) {
 	}
 }
 
+// TestLowerReduceSubChain pins the v0.14 lowering for `-/`: a scalar
+// left-fold chain of OpSub, never an OpReduceSum (subtract reduce is
+// non-commutative; SIMD horizontal-reduce would change rounding).
+// Verified for both element types because the chain must work
+// regardless of whether the existing integer or float reduce path
+// would have applied.
+func TestLowerReduceSubChain(t *testing.T) {
+	cases := []struct {
+		name, src string
+		n         int // tensor length; expect n-1 OpSubs (left fold).
+	}{
+		{"i32", `fn k(x: i32[4]) -> i32 = -/x`, 4},
+		{"f32", `fn k(x: f32[4]) -> f32 = -/x`, 4},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			m := lower(t, tc.src)
+			fn := findFn(m, "k")
+			if fn == nil {
+				t.Fatal("missing k")
+			}
+			if got := countOp(fn, OpSub); got != tc.n-1 {
+				t.Errorf("OpSub count = %d, want %d (one per non-seed element)", got, tc.n-1)
+			}
+			if got := countOp(fn, OpReduceSum); got != 0 {
+				t.Errorf("OpReduceSum count = %d, want 0 (non-commutative path must not use SIMD reduce)", got)
+			}
+		})
+	}
+}
+
+// TestLowerReduceDivChain pins the v0.14 lowering for `//`: a scalar
+// left-fold chain of OpDiv. Like subtract-reduce there is no
+// commutative reformulation, so the SIMD reduce path must not engage.
+func TestLowerReduceDivChain(t *testing.T) {
+	cases := []struct {
+		name, src string
+		n         int
+	}{
+		{"i32", `fn k(x: i32[4]) -> i32 = //x`, 4},
+		{"f32", `fn k(x: f32[4]) -> f32 = //x`, 4},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			m := lower(t, tc.src)
+			fn := findFn(m, "k")
+			if fn == nil {
+				t.Fatal("missing k")
+			}
+			if got := countOp(fn, OpDiv); got != tc.n-1 {
+				t.Errorf("OpDiv count = %d, want %d (one per non-seed element)", got, tc.n-1)
+			}
+			if got := countOp(fn, OpReduceProd); got != 0 {
+				t.Errorf("OpReduceProd count = %d, want 0 (non-commutative path must not use SIMD reduce)", got)
+			}
+		})
+	}
+}
+
 func TestLowerCall(t *testing.T) {
 	m := lower(t, `
 fn id(x: i32) -> i32 = x
