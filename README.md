@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="https://esque-lang.github.io/esquec/"><strong>esque-lang.github.io/esquec</strong></a>
+  <a href="https://esque-lang.github.io/esquec/"><strong>Welcome</strong></a>
   &nbsp;·&nbsp;
   <a href="https://esque-lang.github.io/esquec/tour">Tour</a>
   &nbsp;·&nbsp;
