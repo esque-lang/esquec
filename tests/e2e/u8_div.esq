@@ -1,0 +1,4 @@
+// Verifies the unsigned DIV path canonicalises u8 results. 200 / 4
+// = 50. If the backend wrongly used signed IDIV, 200_u8 would be
+// interpreted as -56 and the result would differ.
+fn main() -> i32 = (200_u8 / 4_u8) as i32

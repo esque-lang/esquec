@@ -1,0 +1,8 @@
+// Simple generic function test
+fn identity[N: nat](x: f32[N]) -> f32[N] = x
+
+fn main() -> i32 = {
+    let a = [1.0, 2.0, 3.0];
+    let b = identity(a);
+    (+/ b) as i32  // 1 + 2 + 3 = 6
+}

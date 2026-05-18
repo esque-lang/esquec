@@ -1,0 +1,6 @@
+@io
+fn main() -> i32 = {
+    print_str("a\tb\n");
+    print_str("c\\d\n");
+    0
+}

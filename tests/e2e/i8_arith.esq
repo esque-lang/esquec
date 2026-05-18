@@ -1,0 +1,5 @@
+// Smallest i8 arithmetic test: subtract two positive i8 literals and
+// widen the i8 result back to i32 so the host exit-code path picks it
+// up. (100_i8 - 58_i8) = 42_i8 = 42_i32 after sign-extending the low
+// byte.
+fn main() -> i32 = (100_i8 - 58_i8) as i32

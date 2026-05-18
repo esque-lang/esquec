@@ -1,0 +1,12 @@
+// Tensor type syntax demonstration
+// This file tests parsing of tensor types and shape parameters
+
+// A function with shape parameters and tensor type arguments
+// (body uses i32 to avoid requiring SSE float support)
+fn get_length[N: nat](x: i32[N]) -> i32 = 42
+
+// Shape parameters with expressions: [N+1] syntax test
+fn test_shape_expr[M: nat, K: nat](a: i32[M, K]) -> i32 = 0
+
+// Main returns a dummy value for now
+fn main() -> i32 = 0

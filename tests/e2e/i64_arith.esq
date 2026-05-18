@@ -1,0 +1,8 @@
+// v0.11: i64 arithmetic exercising values that don't fit in i32.
+// 1_000_000 * 1_000_000 = 10^12, mod 256 = 0 (lower bits of 10^12).
+// Adding 71 returns 71, which fits in the exit-code byte.
+//
+// Tests in particular that 64-bit IMUL is being emitted (not a 32-bit
+// op that would silently truncate the operands and wrap to 32 bits).
+fn main() -> i64 =
+  ((1000000_i64 * 1000000_i64) % 256_i64) + 71_i64

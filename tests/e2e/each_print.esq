@@ -1,0 +1,6 @@
+// each(0..5, print_i32) prints 0..4 and returns unit; we exit 0.
+@io
+fn main() -> i32 = {
+  each(0..5, print_i32);
+  0
+}

@@ -1,0 +1,15 @@
+// Const-folded shape arithmetic (v0.11):
+//   range bound `(2+3)`        -> 5
+//   tabulate N `(2*16+1)`      -> 33
+//   iterate_until max `5*2`    -> 10
+//
+// 0+1+2+3+4 = 10 from the range.
+// 0+1+...+32 = 528 from the tabulate.
+// iterate_until accumulates s+=1 until s == 7 starting at 0, so result = 7.
+// 10 + 528 + 7 = 545; 545 % 256 = 33.
+fn main() -> i32 =
+    (
+        +/(0..(2+3))
+      + +/(tabulate(2*16+1, |i| i))
+      + iterate_until(0, |s| s + 1, |s| s == 7, 5*2)
+    ) % 256

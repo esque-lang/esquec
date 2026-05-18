@@ -1,0 +1,7 @@
+// Test fold with multiplication lambda
+fn main() -> i32 = {
+    let arr = [1.0, 2.0, 3.0, 4.0];
+    // Fold with mul lambda: ((1*2)*3)*4 = 24
+    let product = (|a, b| a * b) / arr;
+    product as i32
+}

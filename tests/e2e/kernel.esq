@@ -1,0 +1,11 @@
+// GPU kernel test - verifies @kernel syntax parsing
+// This kernel would add two vectors element-wise on the GPU
+
+@kernel
+fn vector_add(n: i32) -> i32 = {
+    // For now, just return a constant
+    // Real kernel would use thread indices
+    42
+}
+
+fn main() -> i32 = 42

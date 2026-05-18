@@ -1,0 +1,17 @@
+// f64 scalar arithmetic and i32<->f64 casts (v0.12).
+//
+// Exercises: f64 constants, f64 add/sub/mul/div, i32->f64 (CVTSI2SD),
+// f64->i32 (CVTTSD2SI). Each constant goes through MOVSD via the
+// scratch slot at [rsp-8].
+//
+// 17 as f64 -> 17.0
+// 17.0 * 2.5 = 42.5
+// 42.5 - 0.5 = 42.0
+// 42.0 / 1.0 = 42.0
+// truncate to i32 -> 42.
+fn main() -> i32 = {
+    let n: i32 = 17;
+    let f: f64 = n as f64;
+    let r: f64 = (f * 2.5_f64 - 0.5_f64) / 1.0_f64;
+    r as i32
+}

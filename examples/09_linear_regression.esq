@@ -1,0 +1,50 @@
+// Linear regression by gradient descent.
+//
+// Learn a slope `a` such that y ≈ a·x for a small noisy dataset.
+// Each training step is a single tensor expression:
+//
+//   pred = av .* xs              (forward pass: predictions)
+//   res  = pred .- ys            (residuals)
+//   g    = +/(res .* xs)         (gradient, sum of res·x)
+//   a    = a - (2·lr/N) · g      (parameter update)
+//
+// `iterate` is the training loop. Its state is the scalar slope; the
+// lambda body is the entire step. There are no per-element index
+// expressions — every quantity above is whole-tensor.
+//
+// Dataset: y ≈ 2·x with ~1% noise. After 32 epochs at lr=0.005 the
+// slope converges to ~2.0 and predictions match ys to four decimals.
+//
+// Expected output (slope and predictions; exact tail digits depend
+// on f32 rounding):
+//
+//   2.002729     // learned slope, vs true 2.0
+//   2.002729     // pred for x=1
+//   4.005459     // pred for x=2
+//   6.008189
+//   8.010918
+//   10.013648
+//   12.016378
+//   14.019107
+//   16.021837    // pred for x=8
+//
+// Exit code 0.
+
+@io fn show(p: f32) -> f32 = print_f32(p)
+
+@io fn main() -> i32 = {
+    let xs = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0];
+    let ys = [2.10, 3.92, 6.05, 8.10, 9.95, 12.00, 14.05, 16.00];
+    let lr = 0.005;
+
+    let a = iterate(32, 0.0, |a|
+        let av  = tabulate(8, |_i| a)  in
+        let res = (av .* xs) .- ys     in
+        let g   = +/(res .* xs)        in
+        a - lr * 0.25 * g
+    );
+
+    print_f32(a);
+    each(tabulate(8, |_i| a) .* xs, show);
+    0
+}

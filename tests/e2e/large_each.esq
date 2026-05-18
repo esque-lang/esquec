@@ -1,0 +1,4 @@
+// Walk a 33-element range with print_i32. 33 > unrollLimit so this
+// exercises the runtime each-loop form. Returns 0 on success.
+@io
+fn main() -> i32 = { each(0..33, print_i32); 0 }

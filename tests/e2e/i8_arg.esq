@@ -1,0 +1,7 @@
+// Verifies that a function with an i8 parameter sees the canonical
+// sign-extended representation at entry: System V passes 21 in the
+// low byte of RDI but doesn't promise the upper bits, so the
+// prologue must re-sign-extend before the body uses the value.
+// 21 + 21 = 42.
+fn double(x: i8) -> i8 = x + x
+fn main() -> i32 = double(21_i8) as i32

@@ -1,0 +1,5 @@
+@io
+fn main() -> i32 = {
+    print_str("hello, world\n");
+    0
+}

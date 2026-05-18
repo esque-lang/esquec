@@ -1,0 +1,7 @@
+// v0.11: unsigned comparison. 3_000_000_000 looks negative under
+// signed-i32 interpretation, so "3_000_000_000 > 100" is true under
+// unsigned semantics (CCA/CCB) but false under signed (CCG/CCL).
+// We return 7 from the true branch, 99 from the false branch, and
+// expect 7 — proving the SETcc dispatched on signedness.
+fn main() -> i32 =
+  if 3000000000_u32 > 100_u32 { 7 } else { 99 }

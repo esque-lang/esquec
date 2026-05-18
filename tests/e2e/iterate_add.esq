@@ -1,0 +1,7 @@
+// Test iterate with addition lambda
+fn main() -> i32 = {
+    // Iterate 10 times: add 5 each time
+    // 0 + 5*10 = 50
+    let result = iterate(10, 0.0, |x| x + 5.0);
+    result as i32
+}

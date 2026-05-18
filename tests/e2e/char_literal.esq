@@ -1,0 +1,3 @@
+// Char literals are i32-typed integer constants holding the codepoint.
+// 'A' is 65; the program exits with that as its status.
+fn main() -> i32 = 'A'

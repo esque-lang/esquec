@@ -1,0 +1,6 @@
+// Verifies that a negative i8 (held in a 64-bit GPR with bits 8..63
+// sign-extended to 1) round-trips through addition. -10 + 52 = 42.
+fn main() -> i32 = {
+    let x: i8 = -10_i8;
+    (x + 52_i8) as i32
+}

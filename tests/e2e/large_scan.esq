@@ -1,0 +1,3 @@
+// scan(0, |a,x| a+x, tabulate(50, |i| 1)) yields prefix sums
+// [1,2,3,...,50]. +/ over those is 50*51/2 = 1275; 1275 % 256 = 251.
+fn main() -> i32 = +/(scan(0, |a, x| a + x, tabulate(50, |i| 1))) % 256

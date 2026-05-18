@@ -1,0 +1,7 @@
+// Test iterate with lambda: iterate(n, init, |x| x * 2.0)
+fn main() -> i32 = {
+    // Iterate 5 times: f(f(f(f(f(1))))) where f(x) = x * 2
+    // 1 -> 2 -> 4 -> 8 -> 16 -> 32
+    let result = iterate(5, 1.0, |x| x * 2.0);
+    result as i32
+}

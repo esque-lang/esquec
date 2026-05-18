@@ -1,0 +1,33 @@
+# Binaries
+*.exe
+*.out
+/esquec
+
+# Nix build output
+/result
+/result-*
+
+# Test binaries
+01_arithmetic
+02_functions
+03_conditionals
+04_pipeline
+05_boolean
+06_nested
+07_tensor_types
+08_match
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docusaurus
+docs/build/
+docs/node_modules/
+docs/.docusaurus/

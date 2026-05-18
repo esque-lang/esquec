@@ -1,0 +1,7 @@
+// Test fold with lambda: (|a, b| a + b) / tensor
+fn main() -> i32 = {
+    let arr = [1.0, 2.0, 3.0, 4.0];
+    // Fold with add lambda: ((1+2)+3)+4 = 10
+    let sum = (|a, b| a + b) / arr;
+    sum as i32
+}

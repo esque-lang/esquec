@@ -1,0 +1,16 @@
+// Example 01: Integer arithmetic
+// Demonstrates: operators (+, -, *, /, %), parentheses, precedence
+
+fn main() -> i32 = {
+    let a = 10;
+    let b = 3;
+    let sum = a + b;         // 13
+    let diff = a - b;        // 7
+    let prod = a * b;        // 30
+    let quot = a / b;        // 3
+    let rem = a % b;         // 1
+
+    // Compound expression with precedence
+    // (10 + 3) * (10 - 3) / 2 = 13 * 7 / 2 = 91 / 2 = 45
+    (sum * diff) / 2
+}

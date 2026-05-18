@@ -1,0 +1,7 @@
+fn main() -> i32 = {
+    let x = 1.5;
+    let y = 2.5;
+    let z = x + y;
+    // 1.5 + 2.5 = 4.0, cast to i32 = 4
+    z as i32
+}
