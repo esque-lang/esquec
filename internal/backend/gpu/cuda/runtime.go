@@ -1,3 +1,5 @@
+//go:build cuda
+
 // Package cuda provides CUDA runtime integration via cgo.
 // This package enables loading PTX modules and launching kernels.
 //
