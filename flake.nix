@@ -22,7 +22,7 @@
             pname = "esquec";
             inherit version;
             src = ./.;
-            vendorHash = "sha256-zckNINzay7prNC8bGLfYLDHeG6HVF+3Ft/Qe7iuP9Y8=";
+            vendorHash = "sha256-o95XuYOjHwRI3zUfVyUg2B7W1YCBr1N/sag4My71NRM=";
             subPackages = [ "cmd/esquec" ];
             ldflags = [ "-s" "-w" ];
             meta = with pkgs.lib; {
